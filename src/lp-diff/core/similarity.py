@@ -21,6 +21,6 @@ def calculate_cosine(contextline1, contextline2):
     score = cosine_similarity(vecs[0], vecs[1])[0][0]
     return score
 
-def combinedscore(line1,line2,contextline1,context1,context2):
+def combinedscore(line1,line2,context1,context2):
     return levenshtein_similarity(line1,line2)*0.6 + 0.4*calculate_cosine(context1,context2)
     
