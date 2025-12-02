@@ -16,6 +16,8 @@ def detect_split(
         # start_index : index in right_lines to start checking from
         # max_extra_lines : maximum number of extra lines in the new file to consider for a split
 
+
+        # return value: list of INDICES** in right_lines that correspond to the split of old_line (if any, returns [] if no split detected)
                  ) -> list[int]:
      
 
