@@ -4,11 +4,13 @@ def normalized(line: str) -> str:
     return line.lstrip()
 
 def preprocess():
+
+    # ext functions as actual file extension for path, as well as folder name within test_files
+    ext = input("Enter file extension (java, py): ").strip()
     file = input("Enter a file to scan: ").strip()
 
-    new_path = os.path.join("test folder", f"{file} New.java")
-    old_path = os.path.join("test folder", f"{file} Old.java")
-
+    new_path = os.path.join(f"test_files/{ext}", f"{file}_new.{ext}")
+    old_path = os.path.join(f"test_files/{ext}", f"{file}_old.{ext}")
     new_lines = []
     old_lines = []
 
