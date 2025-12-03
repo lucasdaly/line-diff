@@ -1,4 +1,4 @@
-from Levenshtein import distance as ld
+from similarity import levenshtein_similarity
 
 # Check to see if old_line was split into multiple lines in new_lines
 # Levenshtein similarity of the actual CONTENT of the lines,
@@ -42,7 +42,7 @@ def greedy_split_match(
      for i in range(start_index, bound):
           
           combined += new_lines[i]
-          score = lev_similarity_score(old_line, combined)
+          score = levenshtein_similarity(old_line, combined)
 
           # if score goes down, return the last indices and last score
           if score < last_score:
@@ -52,25 +52,12 @@ def greedy_split_match(
      # if it continuous growing until the end, return all the indices and the last score
      return list(range(start_index, i + 1)) ,score
 
-# returns normalized similarity score 0 (no similarity) to 1 (same string)
-def lev_similarity_score(
-          
-          
-          line1: str,
-          line2: str
-
-          # returns ormalized Levenshtein similarity score between two strings (in this case, old line and combined new lines, but works for any two strings)
-
-) -> float:
-     
-     # get max length of the two lines to have something to normalize against
-     max_len = max(len(line1), len(line2))
-
-     # in case len = 0, no div by 0
-     if max_len == 0:
-        return 1.0
-     
-     return 1 - ld(line1, line2) / max_len
+# testing
+# old_line = "abcdefg"
+# new_lines = ["abc", "def", "g", "hij"]
+# start_index = 0
+# max_extra_lines = 2
+# print(greedy_split_match(old_line, new_lines, start_index, max_extra_lines))
 
 
 
