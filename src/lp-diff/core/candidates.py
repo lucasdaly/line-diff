@@ -30,5 +30,19 @@ def createCandidates(old_simhash, new_simhash):
         
     return candidatelist
     
+def createCandidates2(old_hashs, new_hashs, k=15, distance_threshold=20):
+    candidate_sets = []
+    for i, old_hash in enumerate(old_hashs):
+        row = []
+        for j, new_hash in enumerate(new_hashs):
+            distance = old_hash.distance(new_hash)
+            if distance <= distance_threshold:
+                row.append((distance,j+1))
+            
+        row.sort(key=lambda x: x[0])
 
+        top_k = [j for (_, j) in row[:k]]
+        candidate_sets.append(top_k)
+    
+    return candidate_sets
 
