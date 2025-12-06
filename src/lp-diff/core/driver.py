@@ -8,8 +8,10 @@ import match
 lists = preprocess.preprocess()
 simhashlist = set_simhash.set_simhash(lists[0],lists[1])
 can = candidates.createCandidates2(simhashlist[0],simhashlist[1])
-result = match.compare(lists[0], lists[1], can)
-print(result)
+finalmatches, splitmatches = match.compare(lists[0], lists[1], can)
+print(finalmatches)
+print("------")
+print(splitmatches)
 #i = 0
 #while(i < len(can)):
 #    print(i+1, can[i])
